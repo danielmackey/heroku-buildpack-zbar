@@ -44,5 +44,8 @@ set_config_vars () {
 	echo 'export LD_LIBRARY_PATH="/app/vendor/lib"' >> $PROFILE_PATH
 }
 
+mkdir -p $build_dir/.profile.d
+echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/vendor/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/nodejs.sh
+
 install
 
