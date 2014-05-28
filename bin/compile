@@ -35,7 +35,7 @@ install () {
 
 install
 
-PROFILE_PATH="$build_dir/.profile.d/zbar.sh"
-mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:/app/vendor/bin"' >> $PROFILE_PATH
-echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/vendor/lib"' >> $PROFILE_PATH
+if [ -d "$env_dir" ]; then
+  status "Exporting config vars to environment"
+  export_env_dir $env_dir
+fi
