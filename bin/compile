@@ -28,7 +28,7 @@ install () {
   	mkdir -p $build_dir/vendor/bin
 	  mv $build_dir/zbar-0.10 $build_dir/vendor/zbar
 		cd $build_dir/vendor/zbar
-	  ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor -L /app/vendor/lib  
+	  LDFLAGS="-L/app/vendor/lib" ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor  
 	  make  >/dev/null 2>&1
 	  make install  >/dev/null 2>&1
 	fi
