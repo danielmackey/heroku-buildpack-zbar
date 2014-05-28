@@ -12,7 +12,6 @@ env_dir=$3
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
 
 source $bp_dir/bin/common.sh
-source $bp_dir/bin/config_vars.sh
 
 
 download () {
@@ -32,16 +31,18 @@ install () {
 	  ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor
 	  make
 	  make install 
+	  set_config_vars
 	fi
+
+	set_config_vars
+}
+
+set_config_vars () {
+	PROFILE_PATH="$build_dir/.profile.d/zbar.sh"
+	mkdir -p $(dirname $PROFILE_PATH)
+	echo 'export PATH="/app/vendor/bin:$PATH";' >> $PROFILE_PATH
+	echo 'export LD_LIBRARY_PATH="/app/vendor/lib"' >> $PROFILE_PATH
 }
 
 install
 
-status "Building runtime environment"
-mkdir -p $build_dir/.profile.d
-echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/vendor/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/zbar.sh
-
-PROFILE_PATH="$build_dir/.profile.d/zbar.sh"
-mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="/app/vendor/bin:$PATH";' >> $PROFILE_PATH
-echo 'export LD_LIBRARY_PATH="/app/vendor/lib"' >> $PROFILE_PATH
