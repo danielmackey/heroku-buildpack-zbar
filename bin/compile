@@ -37,5 +37,5 @@ install
 
 PROFILE_PATH="$build_dir/.profile.d/zbar.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:vendor/bin"' >> $PROFILE_PATH
-echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$build_dir/vendor/lib"' >> $PROFILE_PATH
+echo 'export PATH="$PATH:/app/vendor/bin"' >> $PROFILE_PATH
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/vendor/lib"' >> $PROFILE_PATH
