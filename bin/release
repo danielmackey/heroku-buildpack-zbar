@@ -1,7 +1,6 @@
-#!/usr/bin/env bash
-# bin/release <build-dir>
+#!/bin/sh
 
-cat <<EOF
+cat << EOF
 ---
 config_vars:
   PATH: /app/vendor/node/bin:/app/bin:/app/node_modules/.bin:/app/vendor/bin

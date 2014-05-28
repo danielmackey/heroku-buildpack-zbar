@@ -13,6 +13,12 @@ bp_dir=$(cd $(dirname $0); cd ..; pwd)
 
 source $bp_dir/bin/common.sh
 
+PROFILE_PATH="$BUILD_DIR/.profile.d/zbar.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:vendor/bin"' >> $PROFILE_PATH
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:vendor/lib"' >> $PROFILE_PATH
+
+
 download () {
 	status "Downloading and installing ZBAR"
   zbar_url="http://iweb.dl.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.bz2"
@@ -34,9 +40,4 @@ install () {
 }
 
 export LD_LIBRARY_PATH=$build_dir/vendor/lib
-
 install
-
-mkdir -p $build_dir/.profile.d
-cp $bp_dir/bin/config_vars.sh $build_dir/.profile.d/
-chmod +x $build_dir/.profile.d/config_vars.sh
