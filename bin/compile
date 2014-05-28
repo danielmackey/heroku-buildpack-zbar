@@ -37,7 +37,4 @@ install () {
 
 install
 
-if [ -d "$env_dir" ]; then
-  status "Exporting config vars to environment"
-  export_env_dir $env_dir
-fi
+export_env_dir $env_dir
