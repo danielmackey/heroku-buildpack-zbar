@@ -2,6 +2,9 @@
 #  Originally from https://raw.githubusercontent.com/heroku/heroku-buildpack-nodejs/master/bin/common.sh
 #
 
+LD_LIBRARY_PATH="/app/vendor/lib" 
+export LD_LIBRARY_PATH
+
 error() {
   echo " !     $*" >&2
   exit 1
@@ -27,10 +30,6 @@ indent() {
     Darwin) sed -l "$c";; # mac/bsd sed: -l buffers on line boundaries
     *)      sed -u "$c";; # unix/gnu sed: -u unbuffered (arbitrary) chunks of data
   esac
-}
-
-cat_npm_debug_log() {
-  test -f $build_dir/npm-debug.log && cat $build_dir/npm-debug.log
 }
 
 export_env_dir() {

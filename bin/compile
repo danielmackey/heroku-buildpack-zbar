@@ -13,6 +13,8 @@ bp_dir=$(cd $(dirname $0); cd ..; pwd)
 
 source $bp_dir/bin/common.sh
 
+
+
 download () {
 	status "Downloading and installing ZBAR"
   zbar_url="http://iweb.dl.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.bz2"
