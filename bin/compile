@@ -38,5 +38,5 @@ export LD_LIBRARY_PATH=$build_dir/vendor/lib
 install
 
 mkdir -p $build_dir/.profile.d
-cp "$build_dir/bin/config_vars.sh" $build_dir/.profile.d/
+cp "$bp_dir/bin/config_vars.sh" $build_dir/.profile.d/
 chmod +x $build_dir/.profile.d/config_vars.sh
