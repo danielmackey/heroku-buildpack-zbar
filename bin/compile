@@ -34,17 +34,20 @@ install () {
 	  make  >/dev/null 2>&1
 	  make install  >/dev/null 2>&1
 	fi
-	set_config_vars
 }
 
-set_config_vars () {
-	PROFILE_PATH="$bp_dir/.profile.d/zbar.sh"
-	mkdir -p $(dirname $PROFILE_PATH)
-	echo "export PATH='/app/vendor/node/bin:/app/bin:/app/vendor/bin:/app/node_modules/.bin:/app/vendor/bin'" >> $PROFILE_PATH
-	echo "export LD_LIBRARY_PATH='/app/vendor/lib'" >> $PROFILE_PATH
 
-}
 
 install
+
+topic "Writing profile script"
+mkdir -p $build_dir/.profile.d
+cat <<EOF >$build_dir/.profile.d/000_zbar.sh
+export PATH="\$HOME/vendor/bin:$PATH"
+export LD_LIBRARY_PATH="\$HOME/vendor/lib:\$LD_LIBRARY_PATH"
+export INCLUDE_PATH="\$HOME/vendor/include:\$INCLUDE_PATH"
+export CPATH="\$INCLUDE_PATH"
+export CPPPATH="\$INCLUDE_PATH"
+EOF
 
 exit 0
