@@ -43,9 +43,9 @@ install
 topic "Writing profile script"
 mkdir -p $build_dir/.profile.d
 cat <<EOF >$build_dir/.profile.d/000_zbar.sh
-export PATH="\$HOME/vendor/bin:$PATH"
-export LD_LIBRARY_PATH="\$HOME/vendor/lib:\$LD_LIBRARY_PATH"
-export INCLUDE_PATH="\$HOME/vendor/include:\$INCLUDE_PATH"
+export PATH="\$HOME/vendor/bin$PATH"
+export LD_LIBRARY_PATH="\$HOME/vendor/lib\$LD_LIBRARY_PATH"
+export INCLUDE_PATH="\$HOME/vendor/include\$INCLUDE_PATH"
 export CPATH="\$INCLUDE_PATH"
 export CPPPATH="\$INCLUDE_PATH"
 EOF
