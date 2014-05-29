@@ -37,7 +37,6 @@ install () {
 }
 
 
-
 install
 
 status "Writing profile script"
