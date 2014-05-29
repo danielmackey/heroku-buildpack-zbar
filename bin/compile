@@ -40,7 +40,7 @@ install () {
 
 install
 
-topic "Writing profile script"
+status "Writing profile script"
 mkdir -p $build_dir/.profile.d
 cat <<EOF >$build_dir/.profile.d/000_zbar.sh
 export PATH="\$HOME/vendor/bin$PATH"
