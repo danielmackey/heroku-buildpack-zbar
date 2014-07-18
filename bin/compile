@@ -23,7 +23,7 @@ download () {
 }
 
 install () {
-	if [ ! -f $build_dir/vendor/bin/zbarimg ]; then
+	if [ ! -f $cache_dir/vendor/bin/zbarimg ]; then
 	  download
   	  mkdir -p $build_dir/vendor/bin
 	  mv $build_dir/zbar-0.10 $build_dir/vendor/zbar
