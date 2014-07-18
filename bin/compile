@@ -23,7 +23,7 @@ download () {
 }
 
 install () {
-	if [ -f $build_dir/vendor/bin/zbarimg ]; then
+	if [ -e $build_dir/vendor/bin/zbarimg ]; then
 		exit 0
     else
   	  download
