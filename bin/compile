@@ -23,19 +23,19 @@ download () {
 }
 
 install () {
-	if [ -f $build_dir/vendor/bin/zbarimg ]; then
-	  exit 0
-	else
-		download
-  	mkdir -p $build_dir/vendor/bin
+	if [ ! -f $build_dir/vendor/bin/zbarimg ]; then
+	  download
+  	  mkdir -p $build_dir/vendor/bin
 	  mv $build_dir/zbar-0.10 $build_dir/vendor/zbar
-		cd $build_dir/vendor/zbar
-		status "Configuring ZBAR"
+	  cd $build_dir/vendor/zbar
+      status "Configuring ZBAR"
 	  LDFLAGS=-s ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor  >/dev/null 2>&1
 	  status "Make!"
 	  make  >/dev/null 2>&1
 	  status "Make install !!!"
 	  make install  >/dev/null 2>&1
+    else
+ 	  exit 0
 	fi
 }
 
