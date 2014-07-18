@@ -2,7 +2,8 @@
 # bin/detect <build-dir>
 
 if [ -f $1/vendor/bin/zbarimg ]; then
-  echo "ZBAR is installed" && exit 0
+  echo "ZBAR"
+  exit 0
 else
-  echo "ZBAR" && exit 0
+  exit 1
 fi
