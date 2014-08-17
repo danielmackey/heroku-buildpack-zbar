@@ -44,7 +44,13 @@ install () {
 	  make  >/dev/null 2>&1
 	  status "Make install !!!"
 	  make install  >/dev/null 2>&1
-    echo "export PATH=\"\$HOME/vendor/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/nodejs.sh
+    echo "export PATH=\"\$HOME/vendor/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/zbar.sh
+
+
+    if test -d $build_dir/vendor/bin/zbarimg; then
+      status "Caching zbarimg directory for future builds"
+      cp -r $build_dir/vendor/bin/zbarimg $cache_dir/zbarimg
+    fi
 
 	fi
 }
@@ -56,10 +62,6 @@ install
 rm -rf $cache_dir/zbarimg # (for apps still on the older caching strategy)
 
 
-if test -d $build_dir/vendor/bin/zbarimg; then
-  status "Caching node_modules directory for future builds"
-  cp -r $build_dir/vendor/bin/zbarimg $cache_dir/zbarimg
-fi
 
 status "Writing profile script"
 mkdir -p $build_dir/.profile.d
