@@ -19,9 +19,15 @@ export LD_LIBRARY_PATH=$build_dir/vendor/lib
 ls $cache_dir/zbarimg
 
 download () {
-	  status "Downloading and installing ZBAR"
-      zbar_url="http://iweb.dl.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.bz2"
-      curl $zbar_url -s -o - | tar jxf - -C $build_dir
+  if [ -e $cache_dir/zbarimg ]; then
+    mkdir -p $build_dir/vendor/bin
+    cp -r $cache_dir/zbarimg $build_dir/vendor/bin/zbarimg 
+    exit 0
+  else
+    status "Downloading and installing ZBAR"
+    zbar_url="http://iweb.dl.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.bz2"
+    curl $zbar_url -s -o - | tar jxf - -C $build_dir
+  fi
 }
 
 install () {
@@ -48,7 +54,7 @@ install
 
 
 rm -rf $cache_dir/zbarimg # (for apps still on the older caching strategy)
-mkdir -p $cache_dir/zbarimg
+
 
 if test -d $build_dir/vendor/bin/zbarimg; then
   status "Caching node_modules directory for future builds"
