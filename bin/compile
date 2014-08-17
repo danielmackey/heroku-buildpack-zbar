@@ -16,6 +16,8 @@ source $bp_dir/bin/common.sh
 export LDFLAGS=-L$build_dir/vendor/lib
 export LD_LIBRARY_PATH=$build_dir/vendor/lib
 
+ls $cache_dir/zbarimg
+
 download () {
 	  status "Downloading and installing ZBAR"
       zbar_url="http://iweb.dl.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.bz2"
@@ -36,11 +38,22 @@ install () {
 	  make  >/dev/null 2>&1
 	  status "Make install !!!"
 	  make install  >/dev/null 2>&1
+    echo "export PATH=\"\$HOME/vendor/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/nodejs.sh
+
 	fi
 }
 
 
 install
+
+
+rm -rf $cache_dir/zbarimg # (for apps still on the older caching strategy)
+mkdir -p $cache_dir/zbarimg
+
+if test -d $build_dir/vendor/bin/zbarimg; then
+  status "Caching node_modules directory for future builds"
+  cp -r $build_dir/vendor/bin/zbarimg $cache_dir/zbarimg
+fi
 
 status "Writing profile script"
 mkdir -p $build_dir/.profile.d
