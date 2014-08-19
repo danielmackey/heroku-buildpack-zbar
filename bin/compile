@@ -16,7 +16,6 @@ source $bp_dir/bin/common.sh
 export LDFLAGS=-L$build_dir/vendor/lib
 export LD_LIBRARY_PATH=$build_dir/vendor/lib
 
-ls $cache_dir/zbarimg
 
 download () {
   if [ -e $cache_dir/zbarimg ]; then
@@ -46,11 +45,6 @@ install () {
 	  make install  >/dev/null 2>&1
     echo "export PATH=\"\$HOME/vendor/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/zbar.sh
 
-
-    if test -d $build_dir/vendor/bin/zbarimg; then
-      status "Caching zbarimg directory for future builds"
-      cp -r $build_dir/vendor/bin/zbarimg $cache_dir/zbarimg
-    fi
 
 	fi
 }
