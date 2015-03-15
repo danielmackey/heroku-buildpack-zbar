@@ -35,6 +35,7 @@ install () {
     else
   	  download
   	  mkdir -p $build_dir/vendor/bin
+  	  mkdir -p $build_dir/vendor/lib
 	  mv $build_dir/zbar-0.10 $build_dir/vendor/zbar
 	  cd $build_dir/vendor/zbar
       status "Configuring ZBAR"
