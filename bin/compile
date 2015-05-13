@@ -69,7 +69,7 @@ install () {
     patch_zbar
 	  cd $build_dir/vendor/zbar
       status "Configuring ZBAR"
-	  CFLAG="" LDFLAGS=-s ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor
+	  CFLAGS="" LDFLAGS=-s ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor
 	  status "Make!"
 	  make
 	  status "Make install !!!"
