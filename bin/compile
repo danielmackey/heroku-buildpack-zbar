@@ -32,6 +32,29 @@ download () {
 patch () {
   status "Patching JPEG support for ZBAR"
   cd $build_dir/vendor/zbar
+  cat <<'EOF' >> zbar-jpeg-fix.patch
+--- a/zbar/jpeg.c
++++ b/zbar/jpeg.c
+@@ -79,8 +79,15 @@
+ void skip_input_data (j_decompress_ptr cinfo,
+                       long num_bytes)
+ {
+-    cinfo->src->next_input_byte = NULL;
+-    cinfo->src->bytes_in_buffer = 0;
++    if(num_bytes > 0) {
++        if (num_bytes < cinfo->src->bytes_in_buffer) {
++            cinfo->src->next_input_byte += num_bytes;
++            cinfo->src->bytes_in_buffer -= num_bytes;
++        }
++        else {
++            fill_input_buffer(cinfo);
++        }
++    }
+ }
+ 
+ void term_source (j_decompress_ptr cinfo)
+EOF
+
   patch < zbar-jpeg-fix.patch
 }
 
