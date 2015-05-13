@@ -29,6 +29,12 @@ download () {
   fi
 }
 
+patch () {
+  status "Patching JPEG support for ZBAR"
+  cd $build_dir/vendor/zbar
+  patch < zbar-jpeg-fix.patch
+}
+
 install () {
 	if [ -e $build_dir/vendor/bin/zbarimg ]; then
 		exit 0
@@ -37,6 +43,7 @@ install () {
   	  mkdir -p $build_dir/vendor/bin
   	  mkdir -p $build_dir/vendor/lib
 	  mv $build_dir/zbar-0.10 $build_dir/vendor/zbar
+    patch
 	  cd $build_dir/vendor/zbar
       status "Configuring ZBAR"
 	  CFLAG="" LDFLAGS=-s ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor  >/dev/null 2>&1
