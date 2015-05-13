@@ -20,7 +20,7 @@ export LD_LIBRARY_PATH=$build_dir/vendor/lib
 download () {
   if [ -e $cache_dir/zbarimg ]; then
     mkdir -p $build_dir/vendor/bin
-    cp -r $cache_dir/zbarimg $build_dir/vendor/bin/zbarimg 
+    cp -r $cache_dir/zbarimg $build_dir/vendor/bin/zbarimg
     exit 0
   else
     status "Downloading and installing ZBAR"
