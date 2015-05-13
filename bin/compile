@@ -55,7 +55,7 @@ patch_zbar () {
  void term_source (j_decompress_ptr cinfo)
 EOF
 
-  patch -f -b -i zbar-jpeg-fix.patch
+  patch -f -b -p1 -izbar-jpeg-fix.patch
 }
 
 install () {
