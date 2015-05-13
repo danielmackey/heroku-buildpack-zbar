@@ -69,11 +69,11 @@ install () {
     patch_zbar
 	  cd $build_dir/vendor/zbar
       status "Configuring ZBAR"
-	  CFLAG="" LDFLAGS=-s ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor  >/dev/null 2>&1
+	  CFLAG="" LDFLAGS=-s ./configure --disable-video --without-gtk --without-qt --prefix=$build_dir/vendor
 	  status "Make!"
-	  make  >/dev/null 2>&1
+	  make
 	  status "Make install !!!"
-	  make install  >/dev/null 2>&1
+	  make install
     echo "export PATH=\"\$HOME/vendor/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/zbar.sh
 
 
